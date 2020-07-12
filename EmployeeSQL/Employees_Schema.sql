@@ -1,10 +1,10 @@
-CREATE TABLE departments (dept_no NCHAR(30) PRIMARY KEY,
+CREATE TABLE departments (dept_no VARCHAR(30) PRIMARY KEY,
 						 dept_name VARCHAR(50))
 
 CREATE TABLE dept_emp (emp_no INT,
-					  dept_no NCHAR(30))
+					  dept_no VARCHAR(30))
 					  
-CREATE TABLE dept_manager (dept_no NCHAR(30),
+CREATE TABLE dept_manager (dept_no VARCHAR(30),
 						  emp_no INT)
 
 CREATE TABLE employees (emp_no INT,
@@ -12,11 +12,13 @@ CREATE TABLE employees (emp_no INT,
 					   birth_date date NOT NULL,
 					   first_name VARCHAR(30),
 					   last_name VARCHAR(30),
-					   sex NCHAR(10),
+					   sex VARCHAR(10),
 					   hire_date date NOT NULL)
 
 CREATE TABLE salaries (emp_no INT,
 					  salary INT)
 
-CREATE TABLE titles (title_id NCHAR(30),
+CREATE TABLE titles (title_id VARCHAR(30),
 					title VARCHAR(50))
+					
+					
