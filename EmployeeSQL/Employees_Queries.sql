@@ -68,7 +68,3 @@ FROM employees
 WHERE emp_no = 499942
 
 
----TEST
-SELECT last_name, first_name
-FROM employees
-WHERE last_name = 'Baba'
