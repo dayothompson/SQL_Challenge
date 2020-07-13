@@ -9,7 +9,7 @@ JOIN salaries AS S ON E.emp_no = S.emp_no
 -- who were hired in 1986
 SELECT E.first_name, E.last_name, E.hire_date
 FROM employees AS E
-WHERE hire_date >= '1986-01-01' and hire_date <= '1986-12-31'
+WHERE hire_date BETWEEN '1986-01-01' AND '1986-12-31'
 
 
 -- List the manager of each department with the following information: 
