@@ -875,7 +875,10 @@ plt.show()
 ```
 
 ![Output 11 0](Bonus_solution/output_11_0.png)
-![png](output_11_0.png)
+
+
+
+
 
 
 
