@@ -189,23 +189,27 @@
 
 
 
-
-### Import Modules
+```python
+# Import Modules
 
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from config import username, password
+```
 
-### Connect to Postgresql 
+
+```python
+#Connect to Postgresql 
 
 from sqlalchemy import create_engine
 engine = create_engine(f'postgresql://{username}:{password}@localhost:5432/Employees')
 connection = engine.connect()
+```
 
 
-
-### Read salaries table using the connection
+```python
+# Read salaries table using the connection
 
 salaries = pd.read_sql('select * from salaries', connection)
 salaries.head()
@@ -215,6 +219,19 @@ salaries.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -256,7 +273,7 @@ salaries.head()
 
 
 
-
+```python
 # Plot a histogram of the most common salary ranges for employees
 
 x_values = salaries['salary']
@@ -268,23 +285,37 @@ plt.ylabel("Number of Employees")
 plt.title("Most Common Salary Ranges for Employees")
 plt.ylim(0, 170000)
 plt.show()
+```
 
 
-![Output 3 0](Bonus_solution/output_3_0.png)
+![png](output_3_0.png)
 
 
 
-
-### Read titles table using the connection
+```python
+# Read titles table using the connection
 
 titles = pd.read_sql('select * from titles', connection)
 titles
-
+```
 
 
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -336,17 +367,30 @@ titles
 
 
 
-
+```python
 # Read employees table using the connection
 
 employees = pd.read_sql('select * from employees', connection)
 employees.head()
-
+```
 
 
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -418,17 +462,30 @@ employees.head()
 
 
 
-
-### Merge employess and salaries table
+```python
+# Merge employess and salaries table
 
 emp_salaries = pd.merge(salaries, employees,  on='emp_no', how='outer')
 emp_salaries.head()
-
+```
 
 
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -506,7 +563,8 @@ emp_salaries.head()
 
 
 
-### Rename emp_title-id to title_id to perform a merge on title_id
+```python
+# Rename emp_title-id to title_id to perform a merge on title_id
 
 emp_salaries.rename(columns={'emp_title-id': 'title_id'}, inplace=True)
 emp_salaries.head()
@@ -516,6 +574,19 @@ emp_salaries.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -592,7 +663,9 @@ emp_salaries.head()
 
 
 
-### Merge emp_salaries and titles table
+
+```python
+# Merge emp_salaries and titles table
 
 new_merge = pd.merge(emp_salaries, titles, on='title_id', how='outer')
 new_merge.head()
@@ -602,6 +675,19 @@ new_merge.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -684,7 +770,9 @@ new_merge.head()
 
 
 
-### Select required columns from the merged table
+
+```python
+# Select required columns from the merged table
 
 new_df = new_merge[['salary', 'title']]
 new_df.head()
@@ -694,6 +782,19 @@ new_df.head()
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -734,8 +835,14 @@ new_df.head()
 
 
 
+
+```python
 plot_df = new_df.groupby('title')['salary'].mean().round(2)
 plot_df
+```
+
+
+
 
     title
     Assistant Engineer    48564.43
@@ -750,7 +857,8 @@ plot_df
 
 
 
-### Plot a histogram of the average salary by title
+```python
+# Plot a histogram of the average salary by title
 
 plt.figure(figsize=(12,8))
 plt.xlabel("Title")
@@ -763,7 +871,14 @@ plt.show()
 ```
 
 
-![Output 11 0](Bonus_solution/output_11_0.png)
+![png](output_11_0.png)
+
+
+
+```python
+
+```
+
 
 
 
