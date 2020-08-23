@@ -11,13 +11,9 @@
 
 ### ERD Documentation
 
-/Users/dayothompson/Desktop/GitHub/SQL_Challenge/EmployeeSQL/EmployeesSQL_ERD_Documentation.pdf
+![Screen Shot 2020 08 22 At 8.02.19 PM](EmployeeSQL/Screen%20Shot%202020-08-22%20at%208.02.19%20PM.png)
 
 ## Data Engineering
-
-﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- Link to schema: https://app.quickdatabasediagrams.com/#/d/NpWbHR
--- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
 
 CREATE TABLE "departments" (
@@ -84,7 +80,6 @@ REFERENCES "titles" ("title_id");
 
 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
-
 
 
 ## Data Analysis
