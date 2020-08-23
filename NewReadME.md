@@ -1,7 +1,7 @@
 # Employee Database
 
 
-## Data Modeling 
+# Data Modeling 
 
 ### Entity–relationship diagram (ERD)
 
@@ -14,10 +14,10 @@
 
 
 
-## Data Engineering
+# Data Engineering
 
 
-#### Create departments table
+### Create departments table
     CREATE TABLE "departments" (
 		"dept_no" varchar(30)   NOT NULL,
 		"dept_name" varchar(50)   NOT NULL,
@@ -26,13 +26,13 @@
      	   ))
 
 
-#### Create dept_emp table
+### Create dept_emp table
     CREATE TABLE "dept_emp" (
 		"emp_no" int   NOT NULL,
     	"dept_no" varchar(30)   NOT NULL);
 
 
-#### Create dept_manager table
+### Create dept_manager table
     CREATE TABLE "dept_manager" (
 		"dept_no" varchar(30)   NOT NULL,
     	"emp_no" int   NOT NULL,
@@ -41,7 +41,7 @@
      	   ))
 
 
-#### Create employees table
+### Create employees table
     CREATE TABLE "employees" (
 		"emp_no" int   NOT NULL,
     	"emp_title-id" varchar(30)   NOT NULL,
@@ -55,7 +55,7 @@
      	   ))
 
 
-#### Create salaries table
+### Create salaries table
     CREATE TABLE "salaries" (
 		"emp_no" int   NOT NULL,
     	"salary" int   NOT NULL,
@@ -64,7 +64,7 @@
      	   ))
 
 
-#### Create titles table
+### Create titles table
     CREATE TABLE "titles" (
 		"title_id" varchar(30)   NOT NULL,
     "title" varchar(50)   NOT NULL,
@@ -74,7 +74,7 @@
 	 
 
 
-#### Add table constraints
+### Add table constraints
 	 
 	 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
 	 REFERENCES "employees" ("emp_no");
@@ -103,9 +103,11 @@
 
 
 
-	 
-	 ## List the following details of each employee: 
-	 ## employee number, last name, first name, sex, and salary
+## Data Analysis
+
+
+
+	 # List the following details of each employee: employee number, last name, first name, sex, and salary
 	 
 	 SELECT E.emp_no, E.last_name, E.first_name, E.sex, S.salary 
 	 FROM employees AS E
@@ -113,64 +115,71 @@
 	 
 
 
-	 -- List first name, last name, and hire date for employees 
-	 -- who were hired in 1986
+	 # List first name, last name, and hire date for employees who were hired in 1986
+	 
 	 SELECT E.first_name, E.last_name, E.hire_date
 	 FROM employees AS E
 	 WHERE hire_date BETWEEN '1986-01-01' AND '1986-12-31'
+	 
 
 
-	 -- List the manager of each department with the following information: 
-	 -- department number, department name, the manager's employee number, 
-	 -- last name, first name
+	 # List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name
+	 
 	 SELECT D.dept_no, D.dept_name, DM.emp_no, E.last_name, E.first_name 
 	 FROM employees AS E
 	 JOIN dept_manager AS DM ON E.emp_no = DM.emp_no
 	 JOIN departments AS D ON DM.dept_no = D.dept_no
+	 
 
 
-	 -- List the department of each employee with the following information: 
-	 -- employee number, last name, first name, and department name.
+	 # List the department of each employee with the following information: employee number, last name, first name, and department name.
+	 
 	 SELECT DE.emp_no, E.last_name, E.first_name, D.dept_name
 	 FROM employees AS E
 	 JOIN dept_emp AS DE ON E.emp_no = DE.emp_no
 	 JOIN departments AS D ON DE.dept_no = D.dept_no
+	 
 
 
-	 -- List first name, last name, and sex for employees whose first name 
-	 -- is "Hercules" and last names begin with "B."
+	 # List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
+	 
 	 SELECT first_name, last_name, sex
 	 FROM employees
 	 WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
+	 
 
 
-	 -- List all employees in the Sales department, including 
-	 -- their employee number, last name, first name, and department name.
+	 # List all employees in the Sales department, including their employee number, last name, first name, and department name.
+	 
 	 SELECT E.emp_no, E.last_name, E.first_name, D.dept_name 
 	 FROM employees AS E
 	 JOIN dept_emp AS DE ON E.emp_no = DE.emp_no
 	 JOIN departments AS D ON DE.dept_no = D.dept_no
 	 WHERE dept_name = 'Sales'
+	 
 
 
-	 -- List all employees in the Sales and Development departments, 
-	 -- including their employee number, last name, first name, and department name.
+	 # List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
+	 
 	 SELECT E.emp_no, E.last_name, E.first_name, D.dept_name 
 	 FROM employees AS E
 	 JOIN dept_emp AS DE ON E.emp_no = DE.emp_no
 	 JOIN departments AS D ON DE.dept_no = D.dept_no
 	 WHERE dept_name = 'Sales' OR dept_name = 'Development'
+	 
 
 
-	 -- In descending order, list the frequency count of employee last names, 
-	 -- i.e., how many employees share each last name.
+	 # In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+	 
 	 SELECT last_name, COUNT(last_name) as CL
 	 FROM employees
 	 GROUP BY last_name
 	 ORDER BY CL DESC
+	 
 
 
-	 -- EPILOGUE
+	 # EPILOGUE
+	 
 	 SELECT last_name, first_name
 	 FROM employees
 	 WHERE emp_no = 499942
@@ -179,26 +188,22 @@
 
 
 
-# Import Modules
+### Import Modules
 
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from config import username, password
-```
 
-
-```python
-#Connect to Postgresql 
+### Connect to Postgresql 
 
 from sqlalchemy import create_engine
 engine = create_engine(f'postgresql://{username}:{password}@localhost:5432/Employees')
 connection = engine.connect()
-```
 
 
-```python
-# Read salaries table using the connection
+
+### Read salaries table using the connection
 
 salaries = pd.read_sql('select * from salaries', connection)
 salaries.head()
@@ -268,8 +273,7 @@ plt.show()
 
 
 
-```python
-# Read titles table using the connection
+### Read titles table using the connection
 
 titles = pd.read_sql('select * from titles', connection)
 titles
@@ -413,7 +417,7 @@ employees.head()
 
 
 ```python
-# Merge employess and salaries table
+### Merge employess and salaries table
 
 emp_salaries = pd.merge(salaries, employees,  on='emp_no', how='outer')
 emp_salaries.head()
@@ -501,7 +505,7 @@ emp_salaries.head()
 
 
 ```python
-# Rename emp_title-id to title_id to perform a merge on title_id
+### Rename emp_title-id to title_id to perform a merge on title_id
 
 emp_salaries.rename(columns={'emp_title-id': 'title_id'}, inplace=True)
 emp_salaries.head()
@@ -589,7 +593,7 @@ emp_salaries.head()
 
 
 ```python
-# Merge emp_salaries and titles table
+### Merge emp_salaries and titles table
 
 new_merge = pd.merge(emp_salaries, titles, on='title_id', how='outer')
 new_merge.head()
@@ -683,7 +687,7 @@ new_merge.head()
 
 
 ```python
-# Select required columns from the merged table
+### Select required columns from the merged table
 
 new_df = new_merge[['salary', 'title']]
 new_df.head()
@@ -756,7 +760,7 @@ plot_df
 
 
 ```python
-# Plot a histogram of the average salary by title
+### Plot a histogram of the average salary by title
 
 plt.figure(figsize=(12,8))
 plt.xlabel("Title")
@@ -777,7 +781,5 @@ plt.show()
 
 ```
 
-
-#### Schema generated from . Remember to specify data types, primary keys, foreign keys, and other constraints.
 
 
