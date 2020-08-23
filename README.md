@@ -37,7 +37,7 @@ The tables, constraints and the relationships were also created using the inform
         	"dept_no"
      	   ))
 
-![Screen Shot 2020 08 23 At 12.42.27 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%2012.42.27%20AM.png)
+![Screen Shot 2020 08 23 At 12.46.30 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%2012.46.30%20AM.png)
 
 
 ### Create dept_emp table
