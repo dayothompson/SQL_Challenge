@@ -256,7 +256,7 @@ salaries.head()
 
 
 
-```python
+
 # Plot a histogram of the most common salary ranges for employees
 
 x_values = salaries['salary']
@@ -268,10 +268,10 @@ plt.ylabel("Number of Employees")
 plt.title("Most Common Salary Ranges for Employees")
 plt.ylim(0, 170000)
 plt.show()
-```
 
 
-![png](output_3_0.png)
+![Output 3 0](Bonus_solution/output_3_0.png)
+
 
 
 
@@ -279,7 +279,7 @@ plt.show()
 
 titles = pd.read_sql('select * from titles', connection)
 titles
-```
+
 
 
 
@@ -336,12 +336,12 @@ titles
 
 
 
-```python
+
 # Read employees table using the connection
 
 employees = pd.read_sql('select * from employees', connection)
 employees.head()
-```
+
 
 
 
@@ -418,12 +418,12 @@ employees.head()
 
 
 
-```python
+
 ### Merge employess and salaries table
 
 emp_salaries = pd.merge(salaries, employees,  on='emp_no', how='outer')
 emp_salaries.head()
-```
+
 
 
 
@@ -506,7 +506,6 @@ emp_salaries.head()
 
 
 
-```python
 ### Rename emp_title-id to title_id to perform a merge on title_id
 
 emp_salaries.rename(columns={'emp_title-id': 'title_id'}, inplace=True)
@@ -593,8 +592,6 @@ emp_salaries.head()
 
 
 
-
-```python
 ### Merge emp_salaries and titles table
 
 new_merge = pd.merge(emp_salaries, titles, on='title_id', how='outer')
@@ -687,8 +684,6 @@ new_merge.head()
 
 
 
-
-```python
 ### Select required columns from the merged table
 
 new_df = new_merge[['salary', 'title']]
@@ -739,14 +734,8 @@ new_df.head()
 
 
 
-
-```python
 plot_df = new_df.groupby('title')['salary'].mean().round(2)
 plot_df
-```
-
-
-
 
     title
     Assistant Engineer    48564.43
@@ -761,7 +750,6 @@ plot_df
 
 
 
-```python
 ### Plot a histogram of the average salary by title
 
 plt.figure(figsize=(12,8))
@@ -775,13 +763,10 @@ plt.show()
 ```
 
 
-![png](output_11_0.png)
+![Output 11 0](Bonus_solution/output_11_0.png)
 
 
 
-```python
-
-```
 
 
 
