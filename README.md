@@ -137,6 +137,7 @@ The tables, constraints and the relationships were also created using the inform
 	 FROM employees AS E
 	 JOIN salaries AS S ON E.emp_no = S.emp_no	 
 
+![Screen Shot 2020 08 23 At 1.04.52 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%201.04.52%20AM.png)
 
 
 	 # List first name, last name, and hire date for employees who were hired in 1986
@@ -145,6 +146,7 @@ The tables, constraints and the relationships were also created using the inform
 	 FROM employees AS E
 	 WHERE hire_date BETWEEN '1986-01-01' AND '1986-12-31'
  
+![Screen Shot 2020 08 23 At 1.05.51 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%201.05.51%20AM.png)
 
 
 	 # List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name
@@ -154,6 +156,7 @@ The tables, constraints and the relationships were also created using the inform
 	 JOIN dept_manager AS DM ON E.emp_no = DM.emp_no
 	 JOIN departments AS D ON DM.dept_no = D.dept_no
  
+![Screen Shot 2020 08 23 At 1.06.36 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%201.06.36%20AM.png)
 
 
 	 # List the department of each employee with the following information: employee number, last name, first name, and department name.
@@ -163,6 +166,7 @@ The tables, constraints and the relationships were also created using the inform
 	 JOIN dept_emp AS DE ON E.emp_no = DE.emp_no
 	 JOIN departments AS D ON DE.dept_no = D.dept_no	 
 
+![Screen Shot 2020 08 23 At 1.07.40 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%201.07.40%20AM.png)
 
 
 	 # List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
@@ -171,6 +175,7 @@ The tables, constraints and the relationships were also created using the inform
 	 FROM employees
 	 WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
 
+![Screen Shot 2020 08 23 At 1.08.56 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%201.08.56%20AM.png)
 
 
 	 # List all employees in the Sales department, including their employee number, last name, first name, and department name.
@@ -181,6 +186,7 @@ The tables, constraints and the relationships were also created using the inform
 	 JOIN departments AS D ON DE.dept_no = D.dept_no
 	 WHERE dept_name = 'Sales'
  
+![Screen Shot 2020 08 23 At 1.09.59 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%201.09.59%20AM.png)
 
 
 	 # List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
@@ -191,6 +197,7 @@ The tables, constraints and the relationships were also created using the inform
 	 JOIN departments AS D ON DE.dept_no = D.dept_no
 	 WHERE dept_name = 'Sales' OR dept_name = 'Development'
 
+![Screen Shot 2020 08 23 At 1.10.41 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%201.10.41%20AM.png)
 
 
 	 # In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
@@ -200,6 +207,7 @@ The tables, constraints and the relationships were also created using the inform
 	 GROUP BY last_name
 	 ORDER BY CL DESC
 
+![Screen Shot 2020 08 23 At 1.11.36 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%201.11.36%20AM.png)
 
 
 	 # EPILOGUE
@@ -208,6 +216,7 @@ The tables, constraints and the relationships were also created using the inform
 	 FROM employees
 	 WHERE emp_no = 499942
 
+![Screen Shot 2020 08 23 At 1.13.00 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%201.13.00%20AM.png)
 
 
 ## Bonus Solution
