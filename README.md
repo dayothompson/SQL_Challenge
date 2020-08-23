@@ -6,10 +6,12 @@
 # Data Modeling 
 
 ### Entity–relationship diagram (ERD)
+Using Quick DBD, the database model was created.
 
 ![EmployeesSQL ERD](EmployeeSQL/EmployeesSQL%20ERD.png)
 
 ### ERD Documentation
+Additional documentation was generated for end-users.
 
 ![Screen Shot 2020 08 22 At 8.02.19 PM](EmployeeSQL/Screen%20Shot%202020-08-22%20at%208.02.19%20PM.png)
 
@@ -17,6 +19,14 @@
 
 
 # Data Engineering
+A database called Employees was created. 
+The tables, constraints and the relationships were also created using the information from the entity-relationship diagram.
+
+
+### Create Employees database
+	
+	CREATE DATABASE "Employees"
+	
 
 
 ### Create departments table
@@ -26,6 +36,8 @@
     	CONSTRAINT "pk_departments" PRIMARY KEY (
         	"dept_no"
      	   ))
+
+![Screen Shot 2020 08 23 At 12.42.27 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%2012.42.27%20AM.png)
 
 
 ### Create dept_emp table
