@@ -45,6 +45,8 @@ The tables, constraints and the relationships were also created using the inform
 		"emp_no" int   NOT NULL,
     	"dept_no" varchar(30)   NOT NULL);
 
+![Screen Shot 2020 08 23 At 12.51.09 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%2012.51.09%20AM.png)
+
 
 ### Create dept_manager table
     CREATE TABLE "dept_manager" (
@@ -53,6 +55,8 @@ The tables, constraints and the relationships were also created using the inform
     	CONSTRAINT "pk_dept_manager" PRIMARY KEY (
         	"dept_no"
      	   ))
+
+![Screen Shot 2020 08 23 At 12.51.41 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%2012.51.41%20AM.png)
 
 
 ### Create employees table
@@ -68,6 +72,8 @@ The tables, constraints and the relationships were also created using the inform
         	"emp_no"
      	   ))
 
+![Screen Shot 2020 08 23 At 12.52.22 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%2012.52.22%20AM.png)
+
 
 ### Create salaries table
     CREATE TABLE "salaries" (
@@ -76,6 +82,8 @@ The tables, constraints and the relationships were also created using the inform
     	CONSTRAINT "pk_salaries" PRIMARY KEY (
         	"salary"
      	   ))
+
+![Screen Shot 2020 08 23 At 12.52.56 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%2012.52.56%20AM.png)
 
 
 ### Create titles table
@@ -86,6 +94,8 @@ The tables, constraints and the relationships were also created using the inform
         "title_id"
      ))
 	 
+
+![Screen Shot 2020 08 23 At 12.53.35 AM](Bonus_solution/Screen%20Shot%202020-08-23%20at%2012.53.35%20AM.png)
 
 
 ### Add table constraints
