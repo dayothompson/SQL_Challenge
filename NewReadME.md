@@ -17,18 +17,13 @@
 ## Data Engineering
 
 
-CREATE TABLE "departments" (
 
-    "dept_no" varchar(30)   NOT NULL,
-	
-    "dept_name" varchar(50)   NOT NULL,
-	
-    CONSTRAINT "pk_departments" PRIMARY KEY (
-		
-        "dept_no"
-		
-     )
-	 
+CREATE TABLE "departments" (
+    "dept_no" varchar(30)   NOT NULL,	
+    "dept_name" varchar(50)   NOT NULL,	
+    CONSTRAINT "pk_departments" PRIMARY KEY (		
+        "dept_no"		
+     )	 
 );
 
 
