@@ -1,7 +1,13 @@
 # Employee Database
 
+[Database Reliability Engineering 3](Bonus_solution/database-reliability-engineering-3.jpg)
+
+
+
 ## Overview
 It is a beautiful spring day, and it is two weeks since I have been hired as a new data engineer at Pewlett Hackard. My first major task is a research project on employees of the corporation from the 1980s and 1990s. All that remain of the database of employees from that period are six CSV files.
+
+### Task
 My first course of action is to inspect the CSV files and sketch out an ERD of the tables. I will use the information I have to create a table schema for each of the six CSV files and to specify data types, primary keys, foreign keys, and other constraints.
 Once I have a complete database, I will perform the following tasks:
 
@@ -23,11 +29,8 @@ In descending order, list the frequency count of employee last names, i.e., how 
 
 
 
-Sounds great!!! Let's dive right into it.
-
-
-
-![Database Reliability Engineering 3](Bonus_solution/database-reliability-engineering-3.jpg)
+Sounds great!!! 
+Let's dive right into it.
 
 
 # Data Modeling 
