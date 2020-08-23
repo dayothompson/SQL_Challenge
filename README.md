@@ -287,7 +287,7 @@ plt.ylim(0, 170000)
 plt.show()
 ```
 
-
+![Output 3 0](Bonus_solution/output_3_0.png)
 ![png](output_3_0.png)
 
 
