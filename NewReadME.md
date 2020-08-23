@@ -17,152 +17,164 @@
 ## Data Engineering
 
 
+#### Create departments table
+    CREATE TABLE "departments" (
+		"dept_no" varchar(30)   NOT NULL,
+		"dept_name" varchar(50)   NOT NULL,
+    	CONSTRAINT "pk_departments" PRIMARY KEY (
+        	"dept_no"
+     	   ))
 
 
+#### Create dept_emp table
+    CREATE TABLE "dept_emp" (
+		"emp_no" int   NOT NULL,
+    	"dept_no" varchar(30)   NOT NULL);
 
 
-
-CREATE TABLE "departments" (
-
-    "dept_no" varchar(30)   NOT NULL,
-    "dept_name" varchar(50)   NOT NULL,
-    CONSTRAINT "pk_departments" PRIMARY KEY (
-        "dept_no"
-     )
-);  
+#### Create dept_manager table
+    CREATE TABLE "dept_manager" (
+		"dept_no" varchar(30)   NOT NULL,
+    	"emp_no" int   NOT NULL,
+    	CONSTRAINT "pk_dept_manager" PRIMARY KEY (
+        	"dept_no"
+     	   ))
 
 
+#### Create employees table
+    CREATE TABLE "employees" (
+		"emp_no" int   NOT NULL,
+    	"emp_title-id" varchar(30)   NOT NULL,
+    	"birth_date" date   NOT NULL,
+    	"first_name" varchar(30)   NOT NULL,
+    	"last_name" varchar(30)   NOT NULL,
+    	"sex" varchar(10)   NOT NULL,
+    	"hire_date" date   NOT NULL,
+    	CONSTRAINT "pk_employees" PRIMARY KEY (
+        	"emp_no"
+     	   ))
 
-CREATE TABLE "dept_emp" (
 
-    "emp_no" int   NOT NULL,
-    "dept_no" varchar(30)   NOT NULL
-);
+#### Create salaries table
+    CREATE TABLE "salaries" (
+		"emp_no" int   NOT NULL,
+    	"salary" int   NOT NULL,
+    	CONSTRAINT "pk_salaries" PRIMARY KEY (
+        	"salary"
+     	   ))
 
 
-CREATE TABLE "dept_manager" (
-
-    "dept_no" varchar(30)   NOT NULL,
-    "emp_no" int   NOT NULL,
-    CONSTRAINT "pk_dept_manager" PRIMARY KEY (
-        "dept_no"
-     )
-);
-
-CREATE TABLE "employees" (
-
-    "emp_no" int   NOT NULL,
-    "emp_title-id" varchar(30)   NOT NULL,
-    "birth_date" date   NOT NULL,
-    "first_name" varchar(30)   NOT NULL,
-    "last_name" varchar(30)   NOT NULL,
-    "sex" varchar(10)   NOT NULL,
-    "hire_date" date   NOT NULL,
-    CONSTRAINT "pk_employees" PRIMARY KEY (
-        "emp_no"
-     )
-);
-
-CREATE TABLE "salaries" (
-
-    "emp_no" int   NOT NULL,
-    "salary" int   NOT NULL,
-    CONSTRAINT "pk_salaries" PRIMARY KEY (
-        "salary"
-     )
-);
-
-CREATE TABLE "titles" (
-
-    "title_id" varchar(30)   NOT NULL,
+#### Create titles table
+    CREATE TABLE "titles" (
+		"title_id" varchar(30)   NOT NULL,
     "title" varchar(50)   NOT NULL,
     CONSTRAINT "pk_titles" PRIMARY KEY (
         "title_id"
-     )
-);
+     ))
+	 
 
 
-ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "employees" ("emp_no");
+#### Add table constraints
+	 
+	 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
+	 REFERENCES "employees" ("emp_no");
+	 
 
-ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
-REFERENCES "departments" ("dept_no");
+	 
+	 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
+	 REFERENCES "departments" ("dept_no");
+	 
 
-ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "employees" ("emp_no");
+	 
+	 ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
+	 REFERENCES "employees" ("emp_no");
+	 
 
-ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title-id" FOREIGN KEY("emp_title-id")
-REFERENCES "titles" ("title_id");
+	 
+	 ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title-id" FOREIGN KEY("emp_title-id")
+	 REFERENCES "titles" ("title_id");
+	 
 
-ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "employees" ("emp_no");
+	 
+	 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
+	 REFERENCES "employees" ("emp_no");
+	 
+	 
 
 
 
-CREATE TABLE "departments" (
-    "dept_no" varchar(30)   NOT NULL,
-    "dept_name" varchar(50)   NOT NULL,
-    CONSTRAINT "pk_departments" PRIMARY KEY (
-        "dept_no"
-     )
-);
+	 
+	 ## List the following details of each employee: 
+	 ## employee number, last name, first name, sex, and salary
+	 
+	 SELECT E.emp_no, E.last_name, E.first_name, E.sex, S.salary 
+	 FROM employees AS E
+	 JOIN salaries AS S ON E.emp_no = S.emp_no
+	 
 
-CREATE TABLE "dept_emp" (
-    "emp_no" int   NOT NULL,
-    "dept_no" varchar(30)   NOT NULL
-);
 
-CREATE TABLE "dept_manager" (
-    "dept_no" varchar(30)   NOT NULL,
-    "emp_no" int   NOT NULL,
-    CONSTRAINT "pk_dept_manager" PRIMARY KEY (
-        "dept_no"
-     )
-);
+	 -- List first name, last name, and hire date for employees 
+	 -- who were hired in 1986
+	 SELECT E.first_name, E.last_name, E.hire_date
+	 FROM employees AS E
+	 WHERE hire_date BETWEEN '1986-01-01' AND '1986-12-31'
 
-CREATE TABLE "employees" (
-    "emp_no" int   NOT NULL,
-    "emp_title-id" varchar(30)   NOT NULL,
-    "birth_date" date   NOT NULL,
-    "first_name" varchar(30)   NOT NULL,
-    "last_name" varchar(30)   NOT NULL,
-    "sex" varchar(10)   NOT NULL,
-    "hire_date" date   NOT NULL,
-    CONSTRAINT "pk_employees" PRIMARY KEY (
-        "emp_no"
-     )
-);
 
-CREATE TABLE "salaries" (
-    "emp_no" int   NOT NULL,
-    "salary" int   NOT NULL,
-    CONSTRAINT "pk_salaries" PRIMARY KEY (
-        "salary"
-     )
-);
+	 -- List the manager of each department with the following information: 
+	 -- department number, department name, the manager's employee number, 
+	 -- last name, first name
+	 SELECT D.dept_no, D.dept_name, DM.emp_no, E.last_name, E.first_name 
+	 FROM employees AS E
+	 JOIN dept_manager AS DM ON E.emp_no = DM.emp_no
+	 JOIN departments AS D ON DM.dept_no = D.dept_no
 
-CREATE TABLE "titles" (
-    "title_id" varchar(30)   NOT NULL,
-    "title" varchar(50)   NOT NULL,
-    CONSTRAINT "pk_titles" PRIMARY KEY (
-        "title_id"
-     )
-);
 
-ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "employees" ("emp_no");
+	 -- List the department of each employee with the following information: 
+	 -- employee number, last name, first name, and department name.
+	 SELECT DE.emp_no, E.last_name, E.first_name, D.dept_name
+	 FROM employees AS E
+	 JOIN dept_emp AS DE ON E.emp_no = DE.emp_no
+	 JOIN departments AS D ON DE.dept_no = D.dept_no
 
-ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
-REFERENCES "departments" ("dept_no");
 
-ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "employees" ("emp_no");
+	 -- List first name, last name, and sex for employees whose first name 
+	 -- is "Hercules" and last names begin with "B."
+	 SELECT first_name, last_name, sex
+	 FROM employees
+	 WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
 
-ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title-id" FOREIGN KEY("emp_title-id")
-REFERENCES "titles" ("title_id");
 
-ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "employees" ("emp_no");
+	 -- List all employees in the Sales department, including 
+	 -- their employee number, last name, first name, and department name.
+	 SELECT E.emp_no, E.last_name, E.first_name, D.dept_name 
+	 FROM employees AS E
+	 JOIN dept_emp AS DE ON E.emp_no = DE.emp_no
+	 JOIN departments AS D ON DE.dept_no = D.dept_no
+	 WHERE dept_name = 'Sales'
+
+
+	 -- List all employees in the Sales and Development departments, 
+	 -- including their employee number, last name, first name, and department name.
+	 SELECT E.emp_no, E.last_name, E.first_name, D.dept_name 
+	 FROM employees AS E
+	 JOIN dept_emp AS DE ON E.emp_no = DE.emp_no
+	 JOIN departments AS D ON DE.dept_no = D.dept_no
+	 WHERE dept_name = 'Sales' OR dept_name = 'Development'
+
+
+	 -- In descending order, list the frequency count of employee last names, 
+	 -- i.e., how many employees share each last name.
+	 SELECT last_name, COUNT(last_name) as CL
+	 FROM employees
+	 GROUP BY last_name
+	 ORDER BY CL DESC
+
+
+	 -- EPILOGUE
+	 SELECT last_name, first_name
+	 FROM employees
+	 WHERE emp_no = 499942
+	 
 
 
 
