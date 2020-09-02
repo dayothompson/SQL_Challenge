@@ -28,6 +28,14 @@ FROM employees AS E
 JOIN dept_emp AS DE ON E.emp_no = DE.emp_no
 JOIN departments AS D ON DE.dept_no = D.dept_no
 
+-- Create View of the list of managers for each dept
+CREATE VIEW Managers AS
+SELECT D.dept_no, D.dept_name, DM.emp_no, E.last_name, E.first_name, E.hire_date
+FROM employees AS E
+JOIN dept_manager AS DM ON E.emp_no = DM.emp_no
+JOIN departments AS D ON DM.dept_no = D.dept_no
+ORDER BY E.hire_date DESC
+
 
 -- List first name, last name, and sex for employees whose first name 
 -- is "Hercules" and last names begin with "B."
