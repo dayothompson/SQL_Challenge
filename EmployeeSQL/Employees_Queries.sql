@@ -76,7 +76,6 @@ FROM employees
 WHERE emp_no = 499942
 
 
-
 -- Create View of the list of managers for each dept
 CREATE VIEW Managers 
 AS
@@ -84,8 +83,6 @@ SELECT departments.dept_no, departments.dept_name, dept_manager.emp_no, employee
 FROM employees
 JOIN dept_manager ON employees.emp_no = dept_manager.emp_no
 JOIN departments ON dept_manager.dept_no = departments.dept_no
-
-
 
 
 -- Create Store Procedure to generate all employees in each department
