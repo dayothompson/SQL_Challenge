@@ -1,4 +1,4 @@
-# Data Engineer at ABC Company
+# SQL Challenge
 
 ![Database Reliability Engineering 3](Bonus_solution/database-reliability-engineering-3.jpg)
 
